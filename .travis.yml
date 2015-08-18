@@ -17,7 +17,12 @@ matrix:
   exclude:
     - rvm: 2.2
       gemfile: gemfiles/Gemfile.rails-3.2-stable
-
+  include:
+    - rvm: 2.2.2
+      gemfile: gemfiles/Gemfile.rails-5.0-alpha
+  allow_failures:
+    - rvm: 2.2.2
+      gemfile: gemfiles/Gemfile.rails-5.0-alpha
 services:
   - mongodb
 
