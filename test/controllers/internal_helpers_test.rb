@@ -36,7 +36,7 @@ class HelpersTest < ActionController::TestCase
   test 'get resource params from request params using resource name as key' do
     user_params = {'email' => 'shirley@templar.com'}
 
-    params = if Devise.rails4?
+    params = if (Devise.rails4? || Devise.rails5?)
       # Stub controller name so strong parameters can filter properly.
       # DeviseController does not allow any parameters by default.
       @controller.stubs(:controller_name).returns(:sessions_controller)
@@ -47,7 +47,9 @@ class HelpersTest < ActionController::TestCase
     end
     @controller.stubs(:params).returns(params)
 
-    assert_equal user_params, @controller.send(:resource_params)
+    res_params = @controller.send(:resource_params)
+    res_params = res_params.to_unsafe_h if res_params.respond_to? :to_unsafe_h
+    assert_equal user_params, res_params
   end
 
   test 'resources methods are not controller actions' do

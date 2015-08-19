@@ -1,4 +1,20 @@
 GIT
+  remote: git://github.com/plataformatec/responders.git
+  revision: dab75bb90e4ee2c04d01c85c53f3850a31c58c70
+  specs:
+    responders (2.1.0)
+      railties (>= 4.2.0, < 5)
+
+GIT
+  remote: git://github.com/rails/activemodel-serializers-xml.git
+  revision: caa76361264319c205101ab767de1ca82d0d7a75
+  specs:
+    activemodel-serializers-xml (0.1.0)
+      activemodel
+      activerecord
+      activesupport
+
+GIT
   remote: git://github.com/rails/arel.git
   revision: d5432b4616ff43fbb14540d351eed351e21bb20e
   specs:
@@ -6,7 +22,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: d993cb362969caa2cb3b3f2f86ddf653d34dfb1b
+  revision: 3ee7c5706fb81fda6cb138b3288a5039388e0b92
   branch: master
   specs:
     actionmailer (5.0.0.alpha)
@@ -132,6 +148,8 @@ GEM
       ruby-openid (>= 2.1.8)
     rack-test (0.6.3)
       rack (>= 1.0)
+    rails-controller-testing (0.0.3)
+      rails (>= 4.2)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -142,10 +160,8 @@ GEM
       loofah (~> 2.0)
     rake (10.4.2)
     rdoc (4.2.0)
-    responders (2.1.0)
-      railties (>= 4.2.0, < 5)
     ruby-openid (2.7.0)
-    sprockets (3.3.1)
+    sprockets (3.3.2)
       rack (~> 1.0)
     sprockets-rails (2.3.2)
       actionpack (>= 3.0)
@@ -167,6 +183,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activemodel-serializers-xml!
   activerecord-jdbc-adapter
   activerecord-jdbcsqlite3-adapter
   arel!
@@ -178,7 +195,9 @@ DEPENDENCIES
   omniauth-oauth2 (~> 1.2.0)
   omniauth-openid (~> 1.0.1)
   rails!
+  rails-controller-testing
   rdoc
+  responders!
   sqlite3
   webrat (= 0.7.3)
 

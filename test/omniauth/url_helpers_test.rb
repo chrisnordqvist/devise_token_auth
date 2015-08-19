@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class OmniAuthRoutesTest < ActionController::TestCase
-  ExpectedUrlGeneratiorError = Devise.rails4? ?
+  ExpectedUrlGeneratiorError = (Devise.rails4? || Devise.rails5?) ?
     ActionController::UrlGenerationError : ActionController::RoutingError
 
   tests ApplicationController

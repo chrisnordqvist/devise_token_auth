@@ -415,7 +415,12 @@ options to another `devise_for` call outside the scope. Here is an example:
 ERROR
         end
 
-        path, @scope[:path] = @scope[:path], nil
+        path = @scope[:path]
+        if @scope.respond_to? :frame
+          @scope.frame[:path] = nil
+        else
+          @scope[:path] = nil
+        end
         path_prefix = Devise.omniauth_path_prefix || "/#{mapping.fullpath}/auth".squeeze("/")
 
         set_omniauth_path_prefix!(path_prefix)
@@ -434,7 +439,11 @@ ERROR
           as: :omniauth_callback,
           via: [:get, :post]
       ensure
-        @scope[:path] = path
+        if @scope.respond_to? :frame
+          @scope.frame[:path] = path
+        else
+          @scope[:path] = path
+        end
       end
 
       def with_devise_exclusive_scope(new_path, new_as, options) #:nodoc:
@@ -443,7 +452,13 @@ ERROR
         exclusive = { as: new_as, path: new_path, module: nil }
         exclusive.merge!(options.slice(:constraints, :defaults, :options))
 
-        exclusive.each_pair { |key, value| @scope[key] = value }
+        exclusive.each_pair do |key, value|
+          if @scope.respond_to? :frame
+            @scope.frame[key] = value
+          else
+            @scope[key] = value
+          end
+        end
         yield
       ensure
         @scope = current_scope

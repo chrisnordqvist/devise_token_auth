@@ -135,6 +135,7 @@ class LockTest < ActionDispatch::IntegrationTest
     post user_unlock_path(format: 'xml'), user: {email: user.email}
     assert_response :success
     assert_equal response.body, {}.to_xml
+
     assert_equal 1, ActionMailer::Base.deliveries.size
   end
 

@@ -7,6 +7,10 @@ module Devise
   def self.rails4?
     Rails.version.start_with? '4'
   end
+
+  def self.rails5?
+    Rails.version.start_with? '5'
+  end
 end
 
 # Set up gems listed in the Gemfile.

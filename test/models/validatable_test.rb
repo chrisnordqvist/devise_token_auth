@@ -57,7 +57,7 @@ class ValidatableTest < ActiveSupport::TestCase
     user = new_user(password: 'new_password', password_confirmation: 'blabla')
     assert user.invalid?
 
-    if Devise.rails4?
+    if Devise.rails4? || Devise.rails5?
       assert_equal 'doesn\'t match Password', user.errors[:password_confirmation].join
     else
       assert_equal 'doesn\'t match confirmation', user.errors[:password].join
@@ -79,7 +79,7 @@ class ValidatableTest < ActiveSupport::TestCase
     user.password_confirmation = 'another_password'
     assert user.invalid?
 
-    if Devise.rails4?
+    if Devise.rails4? || Devise.rails5?
       assert_equal 'doesn\'t match Password', user.errors[:password_confirmation].join
     else
       assert_equal 'doesn\'t match confirmation', user.errors[:password].join

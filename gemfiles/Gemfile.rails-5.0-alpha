@@ -8,6 +8,12 @@ gem "omniauth", "~> 1.2.2"
 gem "omniauth-oauth2", "~> 1.2.0"
 gem "rdoc"
 
+gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
+
+gem 'rails-controller-testing'
+
+gem 'responders', github: 'plataformatec/responders'
+
 group :test do
   gem "omniauth-facebook"
   gem "omniauth-openid", "~> 1.0.1"
