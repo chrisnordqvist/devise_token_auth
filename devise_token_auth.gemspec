@@ -17,8 +17,8 @@ Gem::Specification.new do |s|
   s.files      = Dir["{app,config,db,lib}/**/*", "LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "rails", :git => 'https://github.com/rails/rails.git'
-  s.add_dependency "devise", :git => 'https://github.com/twalpole/devise.git', :branch => 'rails5'
+  s.add_dependency "rails"
+  s.add_dependency "devise"
 
   s.add_development_dependency "sqlite3", "~> 1.3"
   s.add_development_dependency 'pg'
