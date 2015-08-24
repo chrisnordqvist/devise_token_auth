@@ -58,6 +58,11 @@ class FailureTest < ActiveSupport::TestCase
       'warden' => OpenStruct.new(message: nil)
     }.merge!(env_params)
 
+    # Passing nil for action_dispatch.request.formats prevents the default from being used in Rails 5, need to remove it
+    if env.has_key?('action_dispatch.request.formats') && env['action_dispatch.request.formats'].nil?
+      env.delete 'action_dispatch.request.formats' unless env['action_dispatch.request.formats']
+    end
+
     @response = (env.delete(:app) || Devise::FailureApp).call(env).to_a
     @request  = ActionDispatch::Request.new(env)
   end
