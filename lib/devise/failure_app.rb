@@ -22,7 +22,7 @@ module Devise
       @respond.call(env)
     end
 
-    # Try retrieving the URL options from the parent controller (usually 
+    # Try retrieving the URL options from the parent controller (usually
     # ApplicationController). Instance methods are not supported at the moment,
     # so only the class-level attribute is used.
     def self.default_url_options(*args)
@@ -51,9 +51,14 @@ module Devise
     end
 
     def recall
-      env["PATH_INFO"]  = attempted_path
+      if request.respond_to?(:set_header)
+        request.set_header('PATH_INFO', attempted_path)
+      else
+        env["PATH_INFO"]  = attempted_path
+      end
       flash.now[:alert] = i18n_message(:invalid) if is_flashing_format?
-      self.response = recall_app(warden_options[:recall]).call(env)
+      # self.response = recall_app(warden_options[:recall]).call(env)
+      self.response = recall_app(warden_options[:recall]).call(request.env)
     end
 
     def redirect
@@ -188,11 +193,11 @@ module Devise
     end
 
     def warden
-      env['warden']
+      request.respond_to?(:get_header) ? request.get_header("warden") : env["warden"]
     end
 
     def warden_options
-      env['warden.options']
+      request.respond_to?(:get_header) ? request.get_header("warden.options") : env["warden.options"]
     end
 
     def warden_message
