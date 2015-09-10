@@ -5,6 +5,8 @@ gemspec path: '..'
 gem "rails", github: 'rails/rails', branch: 'master'
 gem "arel", github: 'rails/arel'
 gem "rack", github: 'rack/rack'
+gem "sprockets-rails", github: 'rails/sprockets-rails'
+gem "sprockets", github: 'rails/sprockets'
 # gem "omniauth", "~> 1.2.2"
 gem "omniauth", github: 'twalpole/omniauth', branch: 'rack_master'
 gem "oauth2", github: 'twalpole/oauth2', branch: 'rack_master'
